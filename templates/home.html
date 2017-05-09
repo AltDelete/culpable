@@ -4,10 +4,21 @@
     </head>
     <body>
         <h1>Senators</h1>
-        {% for members in senate %}
-        <b>{{ members.first_name }} {{ members.last_name }} -- {{ members.party }} -- <a href="www.twitter.com/{{ members.twitter_account }}">@{{ members.twitter_account }}</a></b><br />
+        <table>
+            <tr>
+                <th>Member</th>
+                <th>Party</th>
+                <th>twitter</th>
+            </tr>
+            <tr>
+                {% for members in senate %}
+                <th>{{ members.first_name }} {{ members.last_name }}</th>
+                <th>{{ members.party }}</th>
+                <th><a href="http://twitter.com/{{ members.twitter_account }}">{{ members.twitter_account }}</a></th>
+            </tr>
+            {% endfor %}
+        </table>
 
-        {% endfor %}
 
         <h1>Headlines</h1>
         <form>
