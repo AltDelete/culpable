@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- These meta tags come first. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Culpable</title>
+
+    <!-- Include the CSS -->
+    <link href="../static/toolkit.min.css" rel="stylesheet">
+    <link href="../static/application.css" rel="stylesheet">
+    <link href="../static/docs.css" rel="stylesheet">
+    <link href="../static/styles.css" rel="stylesheet">
+
+</head>
+
+<body class="with-top-navbar">
+    <div class="container pt-4">
+        <div class="row">
+            <div class="col-lg-12">
+
+
+
+
+                <form action="" method="post" role="form">
+                    {{ form.csrf }}
+                    <ul class="list-group media-list media-list-stream mb-4">
+                        <li class="media list-group-item pt4">
+                            <div class="input-group input-group-lg">
+                                <span class="input-group-addon" id="sizing-addon1">@</span>
+                                <input type="text" class="form-control" id="name" name="name" placeholder="Search by State" aria-describedby="sizing-addon1">
+                            </div>
+                        </li>
+                    </ul>
+                </form>
+
+                <br>
+
+                <li class="media list-group-item p-4">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Member</th>
+                                <th>Party</th>
+                                <th>Votes with Party</th>
+                                <th>twitter</th>
+                            </tr>
+                        </thead>
+                        <tr>
+                            {% for obj in senate %}
+
+                                {% for results in obj['results'] %}
+
+                                <td>{{ results.first_name }} {{ results.last_name }}</td>
+                                <td>{{ results.current_party }}</td>
+                                <td>{{ results.roles[0].votes_with_party_pct }}
+                                    <td><a href="http://twitter.com/{{ results.twitter_account }}">{{ results.twitter_account }}</a></th>
+                        </tr>
+                        {% endfor %}
+                        {% endfor %}
+                    </table>
+                </li>
+
+
+
+                <br />
+
+                <div class="mt-2">
+                    <div class="row">
+                        {% for obj in senate %}
+
+                            {% for results in obj['results'] %}
+                        <div class="col-lg-6">
+                            <div class="card card-profile">
+                                <div class="card-header" style="background-image: url(https://igcdn-photos-h-a.akamaihd.net/hphotos-ak-xfa1/t51.2885-15/11312291_348657648678007_1202941362_n.jpg);"></div>
+                                <div class="card-block text-xs-center">
+                                    <img class="card-profile-img" src="../assets/img/avatar-fat.jpg">
+                                    <h5 class="card-title">{{ results.first_name }} {{ results.last_name}}</h5>
+                                    <p class="mb-4">Congressional website: {{ results.domain }}</p>
+                                    <button class="btn btn-outline-primary btn-sm">
+            <span class="icon icon-add-user"></span> Follow
+          </button>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        {% endfor %}
+
+
+
+                    </div>
+                    <br>
+                    <div class="card card-link-list col-lg-12">
+                        <div class="card-block">
+                            © 2017 Culpable.net
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+    </div>
+    </div>
+
+    <!-- Include jQuery (required) and the JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="../static/toolkit.min.js"></script>
+</body>
+
+</html>
